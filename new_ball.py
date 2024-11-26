@@ -4,7 +4,7 @@ import turtle
 import random
 import heapq
 import paddle
-
+import time
 class BouncingSimulator:
     def __init__(self, num_balls):
         self.num_balls = num_balls
@@ -12,6 +12,7 @@ class BouncingSimulator:
         self.t = 0.0
         self.pq = []
         self.HZ = 4
+        self.color = (255, 0, 0)
         turtle.speed(0)
         turtle.tracer(0)
         turtle.hideturtle()
@@ -30,7 +31,7 @@ class BouncingSimulator:
             self.ball_list.append(ball.Ball(ball_radius, x, y, vx, vy, ball_color, i))
 
         tom = turtle.Turtle()
-        self.my_paddle = paddle.Paddle(50, 50, (255, 0, 0), tom)
+        self.my_paddle = paddle.Paddle(300, 300, self.color, tom)
         self.my_paddle.set_location([0, -50])
 
         self.screen = turtle.Screen()
@@ -89,6 +90,7 @@ class BouncingSimulator:
     def move_right(self):
         if (self.my_paddle.location[0] + self.my_paddle.width/2 + 40) <= self.canvas_width:
             self.my_paddle.set_location([self.my_paddle.location[0] + 40, self.my_paddle.location[1]])
+
     ############### CUSTOM #######################################################################
     
     def move_up(self):
@@ -99,6 +101,7 @@ class BouncingSimulator:
       
         if (self.my_paddle.location[1] - self.my_paddle.height/2 - 40) >= -self.canvas_height:
             self.my_paddle.set_location([self.my_paddle.location[0], self.my_paddle.location[1]-40])
+
 
     ##############################################################################################        
 
@@ -142,7 +145,8 @@ class BouncingSimulator:
                 self.__redraw()
             elif (ball_a is not None) and (ball_b is None) and (paddle_a is not None):
                 ball_a.bounce_off_paddle()
-
+                for i in range(40,200):
+                    self.my_paddle.color = (i,0,0)
             self.__predict(ball_a)
             self.__predict(ball_b)
 
@@ -154,6 +158,6 @@ class BouncingSimulator:
         turtle.done()
 
 # num_balls = int(input("Number of balls to simulate: "))
-num_balls = 5
+num_balls = 1
 my_simulator = BouncingSimulator(num_balls)
 my_simulator.run()

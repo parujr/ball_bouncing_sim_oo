@@ -10,7 +10,7 @@ class Ball:
         self.vy = vy
         self.color = color
         self.mass = 100*size**2
-        self.count = 0
+        self.count = 1
         self.id = id
         self.canvas_width = turtle.screensize()[0]
         self.canvas_height = turtle.screensize()[1]
@@ -130,10 +130,11 @@ class Ball:
             return dt
         else:
             return math.inf
-
+       
     def bounce_off_paddle(self):
         self.vy = -self.vy
         self.count += 1
+        
 
     def __str__(self):
         return str(self.x) + ":" + str(self.y) + ":" + str(self.vx) + ":" + str(self.vy) + ":" + str(self.count) + str(self.id)
