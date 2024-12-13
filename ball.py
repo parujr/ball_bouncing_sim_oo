@@ -118,15 +118,15 @@ class Ball:
             return math.inf
 
     def time_to_hit_paddle(self, paddle):
-        if (self.vy > 0) and ((self.y + self.size) > (paddle.location[1] - paddle.height/2)):
+        if self.vy == 0:
             return math.inf
-        if (self.vy < 0) and ((self.y - self.size) < (paddle.location[1] + paddle.height/2)):
+        dt = (paddle.location[1] - self.y - (self.size if self.vy < 0 else -self.size)) / self.vy
+        if dt < 0:
             return math.inf
-
-        dt = (math.sqrt((paddle.location[1] - self.y)**2) - self.size - paddle.height/2) / abs(self.vy)
-        paddle_left_edge = paddle.location[0] - paddle.width/2
-        paddle_right_edge = paddle.location[0] + paddle.width/2
-        if paddle_left_edge - self.size <= self.x + (self.vx*dt) <= paddle_right_edge + self.size:
+        future_x = self.x + self.vx * dt
+        paddle_left_edge = paddle.location[0] - paddle.width / 2
+        paddle_right_edge = paddle.location[0] + paddle.width / 2
+        if paddle_left_edge - self.size <= future_x <= paddle_right_edge + self.size:
             return dt
         else:
             return math.inf

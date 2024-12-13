@@ -31,5 +31,9 @@ class Paddle:
     def clear(self):
         self.my_turtle.clear()
 
+    # def hit(self):
+    #     num = 0
+    #     if self.my_turtle 
+
     def __str__(self):
         return "paddle"
