@@ -308,7 +308,7 @@ class BouncingSimulator:
                 heapq.heappush(self.pq, my_event.Event(self.t + 1.0/self.HZ, None, None, None))
                 self.__paddle_predict()
             
-            if time.time() - start_time >= 12 and is_stage_three == False:
+            if time.time() - start_time >= 14 and is_stage_three == False:
                 self.stage_clear()
                 is_stage_three = True
                 self.clear_ball()
@@ -319,7 +319,7 @@ class BouncingSimulator:
                 heapq.heappush(self.pq, my_event.Event(self.t + 1.0/self.HZ, None, None, None))
                 self.__paddle_predict()
 
-            if time.time() - start_time >= 18 and is_stage_four == False:
+            if time.time() - start_time >= 20 and is_stage_four == False:
                 self.stage_clear()
                 is_stage_four = True
                 self.clear_ball()
@@ -330,18 +330,7 @@ class BouncingSimulator:
                 heapq.heappush(self.pq, my_event.Event(self.t + 1.0/self.HZ, None, None, None))
                 self.__paddle_predict()
 
-            if time.time() - start_time >= 18 and is_stage_four == False:
-                self.stage_clear()
-                is_stage_four = True
-                self.clear_ball()
-                self.pq = []
-                self.create_ball(11)
-                for i in range(len(self.ball_list)):
-                    self.__predict(self.ball_list[i])
-                heapq.heappush(self.pq, my_event.Event(self.t + 1.0/self.HZ, None, None, None))
-                self.__paddle_predict()
-
-            if time.time() - start_time >= 24 and is_final_stage == False:
+            if time.time() - start_time >= 26 and is_final_stage == False:
                 self.game_clear()
                 is_final_stage = True
                 self.clear_ball()
@@ -353,10 +342,6 @@ class BouncingSimulator:
                 self.__paddle_predict()
                 turtle.done()
                 
-
-            # if duration > ?? :
-            # statement
-
             self.__predict(ball_a)
             self.__predict(ball_b)
 

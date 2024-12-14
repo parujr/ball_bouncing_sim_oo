@@ -44,7 +44,6 @@ class BouncingSimulator:
         # particle-particle collisions
         for i in range(len(self.ball_list)):
             dt = a_ball.time_to_hit(self.ball_list[i])
-            # insert this event into pq
             heapq.heappush(self.pq, my_event.Event(self.t + dt, a_ball, self.ball_list[i], None))
         
         # particle-wall collisions
