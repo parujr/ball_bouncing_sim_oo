@@ -2,7 +2,7 @@ class Paddle:
     def __init__(self, width, height, color, my_turtle):
         self.width = width
         self.height = height
-        self.location = [0, 0]
+        self.location = [0,0]
         self.color = color
         self.my_turtle = my_turtle
         self.my_turtle.penup()
@@ -16,7 +16,7 @@ class Paddle:
     def draw(self):
         self.my_turtle.color(self.color)
         self.my_turtle.goto(self.location[0], self.location[1] - self.height/2)
-        self.my_turtle.forward(self.width/2)
+        self.my_turtle.forward(self.width/4)
         self.my_turtle.pendown()
         self.my_turtle.begin_fill()
         for _ in range(2):
@@ -30,6 +30,10 @@ class Paddle:
 
     def clear(self):
         self.my_turtle.clear()
+
+    # def hit(self):
+    #     num = 0
+    #     if self.my_turtle 
 
     def __str__(self):
         return "paddle"
